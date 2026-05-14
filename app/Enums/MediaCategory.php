@@ -30,4 +30,14 @@ enum MediaCategory: string
             self::BienEtre => 'warning',
         };
     }
+
+    public function getIcon(): string
+    {
+        return match ($this) {
+            self::Mindset => 'heroicon-o-light-bulb',
+            self::Sport => 'heroicon-o-trophy',
+            self::Business => 'heroicon-o-briefcase',
+            self::BienEtre => 'heroicon-o-heart',
+        };
+    }
 }

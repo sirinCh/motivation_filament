@@ -12,6 +12,11 @@ export default {
           "./resources/views/filament/**/*.blade.php",
           "./vendor/filament/**/*.blade.php",
     ],
+    safelist: [
+        'bg-teal-300',
+        'text-white',
+        'font-bold',
+    ],
     theme: {
         extend: {},
     },

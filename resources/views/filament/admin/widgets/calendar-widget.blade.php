@@ -3,7 +3,7 @@
         $data = $this->getCalendarData();
     @endphp
 
-    <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl px-12">
+    <div class="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-xl p-6">
         <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
             <x-heroicon-o-calendar class="w-5 h-5 text-violet-400" />
             {{ $data['month_name'] }}
@@ -29,8 +29,10 @@
                 @endphp
 
                 <div
-                    class="aspect-square flex items-center justify-center rounded-lg text-xs font-medium relative cursor-pointer transition-colors
-                    {{ $isToday ? 'bg-gradient-to-br from-violet-500 to-pink-500 text-white font-bold shadow-lg shadow-violet-500/25' : 'text-white/70 hover:bg-white/10' }}
+                    class="aspect-square flex items-center justify-center rounded-lg text-xs font-medium relative cursor-pointer transition-colors p-2
+                    @if($isToday) bg-violet-500/20 text-white font-bold shadow-lg shadow-violet-500/25
+                    @else text-white/70 hover:bg-white/10
+                    @endif
                 ">
                     {{ $day }}
                     @if ($hasTask && !$isToday)
@@ -40,11 +42,5 @@
             @endfor
         </div>
 
-        <div class="mt-3 flex items-center gap-3 text-[10px] text-white/40">
-            <span class="flex items-center gap-1"><span
-                    class="w-2 h-2 rounded-full bg-gradient-to-br from-violet-500 to-pink-500"></span>
-                Aujourd'hui</span>
-            <span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-amber-400"></span> Tâche</span>
-        </div>
     </div>
 </x-filament-widgets::widget>

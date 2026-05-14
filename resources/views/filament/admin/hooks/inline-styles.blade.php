@@ -14,7 +14,7 @@
 
     /* ===== TOPBAR NAV (bg-white est sur le <nav> enfant) ===== */
     .fi-body .fi-topbar nav,
-    .fi-body .fi-topbar > nav,
+    .fi-body .fi-topbar>nav,
     html body.fi-body .fi-topbar nav {
         background-color: rgba(10, 10, 26, 0.85) !important;
         background-image: none !important;
@@ -35,13 +35,13 @@
 
     /* ===== TABLE CONTENT ===== */
     html body.fi-body .fi-ta-content,
-    html body.fi-body .fi-ta-content > div {
+    html body.fi-body .fi-ta-content>div {
         background-color: transparent !important;
         background-image: none !important;
     }
 
     /* Séparateurs entre lignes */
-    html body.fi-body .fi-ta-ctn > *,
+    html body.fi-body .fi-ta-ctn>*,
     html body.fi-body .fi-ta-header-ctn {
         border-color: rgba(255, 255, 255, 0.08) !important;
     }
@@ -69,7 +69,7 @@
 
     /* ===== WRAPPER SECTION / PAGE ===== */
     html body.fi-body .fi-page,
-    html body.fi-body .fi-main > div > div {
+    html body.fi-body .fi-main>div>div {
         background-color: transparent !important;
         background-image: none !important;
     }
@@ -85,7 +85,6 @@
 
     /* Card login */
     .fi-body.fi-body .fi-simple-main {
-        background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.05)) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
     }
@@ -244,10 +243,10 @@
     }
 
     /* ===== CARDS / WIDGETS ===== */
-    .fi-body.fi-body .fi-wi-widget > div,
-    .fi-body.fi-body .fi-wi-widget > section,
-    .fi-body.fi-body .fi-section > div,
-    .fi-body.fi-body .fi-fo-section > div,
+    .fi-body.fi-body .fi-wi-widget>div,
+    .fi-body.fi-body .fi-wi-widget>section,
+    .fi-body.fi-body .fi-section>div,
+    .fi-body.fi-body .fi-fo-section>div,
     .fi-body.fi-body .fi-empty-state,
     .fi-body.fi-body .fi-ta-content {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(108, 92, 231, 0.03)) !important;
@@ -257,8 +256,8 @@
         transition: all 0.3s ease !important;
     }
 
-    .fi-body.fi-body .fi-wi-widget > div:hover,
-    .fi-body.fi-body .fi-section > div:hover {
+    .fi-body.fi-body .fi-wi-widget>div:hover,
+    .fi-body.fi-body .fi-section>div:hover {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.08), rgba(108, 92, 231, 0.06)) !important;
         transform: translateY(-2px) !important;
         box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3) !important;
@@ -304,9 +303,9 @@
         font-weight: 600 !important;
     }
 
-    .fi-body.fi-body .fi-fo-text-input > div,
-    .fi-body.fi-body .fi-fo-select > div,
-    .fi-body.fi-body .fi-fo-textarea > div {
+    .fi-body.fi-body .fi-fo-text-input>div,
+    .fi-body.fi-body .fi-fo-select>div,
+    .fi-body.fi-body .fi-fo-textarea>div {
         background-color: rgba(255, 255, 255, 0.06) !important;
         background-image: none !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -314,9 +313,9 @@
         transition: all 0.3s ease !important;
     }
 
-    .fi-body.fi-body .fi-fo-text-input > div:focus-within,
-    .fi-body.fi-body .fi-fo-select > div:focus-within,
-    .fi-body.fi-body .fi-fo-textarea > div:focus-within {
+    .fi-body.fi-body .fi-fo-text-input>div:focus-within,
+    .fi-body.fi-body .fi-fo-select>div:focus-within,
+    .fi-body.fi-body .fi-fo-textarea>div:focus-within {
         border-color: rgba(108, 92, 231, 0.5) !important;
         box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2) !important;
         background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.05)) !important;
@@ -466,7 +465,7 @@
     html body.fi-body .fi-fo,
     html body.fi-body section.fi-section,
     html body.fi-body .fi-section,
-    html body.fi-body .fi-section > section,
+    html body.fi-body .fi-section>section,
     html body.fi-body .fi-section-content,
     html body.fi-body .fi-section-content-ctn,
     html body.fi-body .fi-resource-create-page section,
@@ -475,15 +474,15 @@
     html body.fi-body [class*="fi-fo-ctn"],
     html body.fi-body .fi-fo-component-ctn,
     html body.fi-body .fi-fo-fieldset,
-    html body.fi-body .fi-fo-fieldset > div,
+    html body.fi-body .fi-fo-fieldset>div,
     html body.fi-body .fi-fo-card,
-    html body.fi-body .fi-fo-card > div,
+    html body.fi-body .fi-fo-card>div,
     html body.fi-body .fi-fo-tabs,
-    html body.fi-body .fi-fo-tabs > div,
+    html body.fi-body .fi-fo-tabs>div,
     html body.fi-body .fi-fo-wizard,
-    html body.fi-body .fi-fo-wizard > div,
+    html body.fi-body .fi-fo-wizard>div,
     html body.fi-body .fi-page-content,
-    html body.fi-body .fi-page-content > div {
+    html body.fi-body .fi-page-content>div {
         background-color: transparent !important;
         background-image: none !important;
     }
@@ -641,8 +640,8 @@
     /* ===== C — CHART WIDGETS ===== */
     /* Wrapper général chart */
     .fi-body.fi-body .fi-wi-chart,
-    .fi-body.fi-body .fi-wi-chart > div,
-    .fi-body.fi-body .fi-wi-chart > section {
+    .fi-body.fi-body .fi-wi-chart>div,
+    .fi-body.fi-body .fi-wi-chart>section {
         background: linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(108, 92, 231, 0.03)) !important;
         background-color: transparent !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -669,13 +668,25 @@
 
     /* ===== STATS OVERVIEW — GLASSMORPHISM PREMIUM ===== */
     @keyframes statGlow {
-        0%, 100% { box-shadow: 0 0 20px rgba(108, 92, 231, 0.15), 0 8px 32px rgba(0,0,0,0.3); }
-        50% { box-shadow: 0 0 35px rgba(108, 92, 231, 0.25), 0 12px 40px rgba(0,0,0,0.4); }
+
+        0%,
+        100% {
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.15), 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        50% {
+            box-shadow: 0 0 35px rgba(108, 92, 231, 0.25), 0 12px 40px rgba(0, 0, 0, 0.4);
+        }
     }
 
     @keyframes shimmer {
-        0% { background-position: -200% center; }
-        100% { background-position: 200% center; }
+        0% {
+            background-position: -200% center;
+        }
+
+        100% {
+            background-position: 200% center;
+        }
     }
 
     .fi-body.fi-body .fi-wi-stats-overview {
@@ -683,7 +694,7 @@
     }
 
     /* Wrapper grille des stats */
-    .fi-body.fi-body .fi-wi-stats-overview > div {
+    .fi-body.fi-body .fi-wi-stats-overview>div {
         gap: 16px !important;
     }
 
@@ -691,9 +702,9 @@
     .fi-body.fi-body .fi-wi-stats-overview-stat {
         position: relative !important;
         background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.07) 0%,
-            rgba(108, 92, 231, 0.05) 50%,
-            rgba(255, 255, 255, 0.03) 100%) !important;
+                rgba(255, 255, 255, 0.07) 0%,
+                rgba(108, 92, 231, 0.05) 50%,
+                rgba(255, 255, 255, 0.03) 100%) !important;
         background-color: transparent !important;
         border: 1px solid rgba(255, 255, 255, 0.12) !important;
         border-radius: 20px !important;
@@ -745,9 +756,9 @@
             inset 0 1px 0 rgba(255, 255, 255, 0.15),
             inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
         background: linear-gradient(135deg,
-            rgba(255, 255, 255, 0.1) 0%,
-            rgba(108, 92, 231, 0.08) 50%,
-            rgba(255, 255, 255, 0.05) 100%) !important;
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(108, 92, 231, 0.08) 50%,
+                rgba(255, 255, 255, 0.05) 100%) !important;
     }
 
     .fi-body.fi-body .fi-wi-stats-overview-stat:hover::after {
@@ -880,16 +891,16 @@
 
     /* ===== E — DATE / TIME PICKER ===== */
     /* Champ date (input) */
-    .fi-body.fi-body .fi-fo-date-time-picker > div,
-    .fi-body.fi-body .fi-fo-date-picker > div {
+    .fi-body.fi-body .fi-fo-date-time-picker>div,
+    .fi-body.fi-body .fi-fo-date-picker>div {
         background-color: rgba(255, 255, 255, 0.06) !important;
         border: 1px solid rgba(255, 255, 255, 0.1) !important;
         border-radius: 10px !important;
         transition: all 0.3s ease !important;
     }
 
-    .fi-body.fi-body .fi-fo-date-time-picker > div:focus-within,
-    .fi-body.fi-body .fi-fo-date-picker > div:focus-within {
+    .fi-body.fi-body .fi-fo-date-time-picker>div:focus-within,
+    .fi-body.fi-body .fi-fo-date-picker>div:focus-within {
         border-color: rgba(108, 92, 231, 0.5) !important;
         box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2) !important;
     }
@@ -1021,7 +1032,7 @@
 
     /* ===== H — MODAL HEADER / FOOTER ===== */
     .fi-body.fi-body .fi-modal-header,
-    .fi-body.fi-body .fi-modal-window > div:first-child {
+    .fi-body.fi-body .fi-modal-window>div:first-child {
         border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
         padding: 20px 24px !important;
         background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.04)) !important;
@@ -1061,13 +1072,25 @@
 
     /* ===== I — LOADING INDICATOR ===== */
     @keyframes motivSpin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
     }
 
     @keyframes motivPulse {
-        0%, 100% { opacity: 1; }
-        50% { opacity: 0.4; }
+
+        0%,
+        100% {
+            opacity: 1;
+        }
+
+        50% {
+            opacity: 0.4;
+        }
     }
 
     /* Overlay wire:loading */

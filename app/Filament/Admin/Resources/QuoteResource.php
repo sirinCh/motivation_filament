@@ -31,21 +31,34 @@ final class QuoteResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Textarea::make('text')
-                    ->label('Citation')
-                    ->required()
-                    ->rows(3)
-                    ->maxLength(65535),
+                Forms\Components\Section::make('Citation')
+                    ->icon('heroicon-o-chat-bubble-bottom-center-text')
+                    ->schema([
+                        Forms\Components\Textarea::make('text')
+                            ->label('Texte de la citation')
+                            ->required()
+                            ->rows(4)
+                            ->maxLength(65535)
+                            ->placeholder('Saisissez la citation ici…'),
 
-                Forms\Components\TextInput::make('author')
-                    ->label('Auteur')
-                    ->required()
-                    ->maxLength(255),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('author')
+                                    ->label('Auteur')
+                                    ->required()
+                                    ->maxLength(255)
+                                    ->placeholder('Ex: Steve Jobs')
+                                    ->prefixIcon('heroicon-o-user'),
 
-                Forms\Components\Toggle::make('is_active')
-                    ->label('Active')
-                    ->default(true)
-                    ->required(),
+                                Forms\Components\Toggle::make('is_active')
+                                    ->label('Citation active')
+                                    ->default(true)
+                                    ->required()
+                                    ->onIcon('heroicon-m-check-circle')
+                                    ->offIcon('heroicon-m-x-circle')
+                                    ->onColor('success'),
+                            ]),
+                    ]),
             ]);
     }
 
@@ -56,20 +69,36 @@ final class QuoteResource extends Resource
                 Tables\Columns\TextColumn::make('text')
                     ->label('Citation')
                     ->limit(80)
-                    ->searchable(),
+                    ->searchable()
+                    ->weight('font-bold')
+                    ->wrap(),
 
                 Tables\Columns\TextColumn::make('author')
                     ->label('Auteur')
-                    ->searchable(),
+                    ->searchable()
+                    ->badge()
+                    ->color('info')
+                    ->icon('heroicon-o-user'),
 
                 Tables\Columns\IconColumn::make('is_active')
                     ->label('Active')
-                    ->boolean(),
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-x-circle')
+                    ->trueColor('success')
+                    ->falseColor('danger'),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Créée le')
+                    ->dateTime('d/m/Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_active')
-                    ->label('Active')
-                    ->boolean()
+                    ->label('Statut')
+                    ->trueLabel('Actives')
+                    ->falseLabel('Inactives')
                     ->native(false),
             ])
             ->actions([
@@ -80,7 +109,8 @@ final class QuoteResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

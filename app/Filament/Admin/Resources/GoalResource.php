@@ -33,35 +33,49 @@ final class GoalResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('title')
-                    ->label('Objectif')
-                    ->required()
-                    ->maxLength(255),
-
-                Forms\Components\Grid::make(2)
+                Forms\Components\Section::make('Objectif')
+                    ->icon('heroicon-o-trophy')
                     ->schema([
-                        Forms\Components\TextInput::make('target_value')
-                            ->label('Objectif cible')
-                            ->numeric()
-                            ->default(1)
-                            ->minValue(1)
-                            ->required(),
+                        Forms\Components\TextInput::make('title')
+                            ->label('Objectif')
+                            ->required()
+                            ->maxLength(255)
+                            ->placeholder('Ex: Lire 12 livres cette année'),
 
-                        Forms\Components\TextInput::make('current_value')
-                            ->label('Valeur actuelle')
-                            ->numeric()
-                            ->default(0)
-                            ->minValue(0)
-                            ->required(),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('target_value')
+                                    ->label('Objectif cible')
+                                    ->numeric()
+                                    ->default(1)
+                                    ->minValue(1)
+                                    ->required()
+                                    ->suffix('unités'),
+
+                                Forms\Components\TextInput::make('current_value')
+                                    ->label('Valeur actuelle')
+                                    ->numeric()
+                                    ->default(0)
+                                    ->minValue(0)
+                                    ->required()
+                                    ->suffix('unités'),
+                            ]),
+
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\DatePicker::make('deadline')
+                                    ->label('Date butoir')
+                                    ->native(false)
+                                    ->prefixIcon('heroicon-o-calendar'),
+
+                                Forms\Components\Toggle::make('is_completed')
+                                    ->label('Objectif atteint')
+                                    ->default(false)
+                                    ->onIcon('heroicon-m-check-circle')
+                                    ->offIcon('heroicon-m-x-circle')
+                                    ->onColor('success'),
+                            ]),
                     ]),
-
-                Forms\Components\DatePicker::make('deadline')
-                    ->label('Date butoir')
-                    ->native(false),
-
-                Forms\Components\Toggle::make('is_completed')
-                    ->label('Terminé')
-                    ->default(false),
             ]);
     }
 
@@ -72,36 +86,51 @@ final class GoalResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->label('Objectif')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->weight('font-bold'),
 
                 Tables\Columns\TextColumn::make('progress')
                     ->label('Progrès')
-                    ->state(fn (Goal $record): string => "{$record->current_value}/{$record->target_value}")
+                    ->state(fn (Goal $record): string => "{$record->current_value} / {$record->target_value}")
+                    ->badge()
                     ->color(fn (Goal $record): string => $record->is_completed ? 'success' : 'warning'),
 
                 Tables\Columns\TextColumn::make('progress_percentage')
-                    ->label('%')
-                    ->state(fn (Goal $record): int => $record->progressPercentage)
-                    ->suffix('%')
+                    ->label('Avancement')
+                    ->state(fn (Goal $record): string => $record->progressPercentage.'%')
+                    ->badge()
                     ->color(fn (Goal $record): string => match (true) {
                         $record->progressPercentage >= 100 => 'success',
                         $record->progressPercentage >= 50 => 'warning',
                         default => 'danger',
-                    }),
+                    })
+                    ->sortable(),
 
                 Tables\Columns\IconColumn::make('is_completed')
                     ->label('Terminé')
-                    ->boolean(),
+                    ->boolean()
+                    ->trueIcon('heroicon-o-check-circle')
+                    ->falseIcon('heroicon-o-clock')
+                    ->trueColor('success')
+                    ->falseColor('warning'),
 
                 Tables\Columns\TextColumn::make('deadline')
                     ->label('Deadline')
                     ->date('d/m/Y')
-                    ->placeholder('—'),
+                    ->sortable()
+                    ->placeholder('—')
+                    ->color(fn (Goal $record): string => $record->deadline?->isPast() && ! $record->is_completed ? 'danger' : 'gray'),
+
+                Tables\Columns\TextColumn::make('created_at')
+                    ->label('Créé le')
+                    ->dateTime('d/m/Y')
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
             ])
             ->filters([
                 Tables\Filters\TernaryFilter::make('is_completed')
                     ->label('Statut')
-                    ->trueLabel('Terminés')
+                    ->trueLabel('Atteints')
                     ->falseLabel('En cours')
                     ->native(false),
             ])
@@ -113,7 +142,8 @@ final class GoalResource extends Resource
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
-            ]);
+            ])
+            ->defaultSort('created_at', 'desc');
     }
 
     public static function getPages(): array

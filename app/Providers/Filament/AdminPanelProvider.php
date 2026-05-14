@@ -95,6 +95,10 @@ final class AdminPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->renderHook(
+                'panels::head.start',
+                fn (): string => Blade::render('@include("filament.admin.hooks.inline-styles")'),
+            )
+            ->renderHook(
                 'panels::sidebar.footer',
                 fn (): string => Blade::render('@include("filament.admin.hooks.sidebar-streak")'),
             )

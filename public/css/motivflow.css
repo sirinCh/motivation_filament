@@ -1,5 +1,5 @@
 /* ================= MOTIVFLOW CUSTOM THEME ================= */
-/* Glassmorphism Dark Theme — Matches public/index.html design */
+/* Variables and utilities only — Filament overrides live in inline-styles.blade.php */
 
 /* ================= ROOT VARIABLES ================= */
 :root {
@@ -26,13 +26,14 @@
     --m-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ================= BODY & LAYOUT ================= */
-.fi-body {
-    background: var(--m-bg) !important;
+/* ================= THREE.JS BACKGROUND FIXES ================= */
+/* Ensure Filament content sits above the Three.js canvas */
+.fi-app {
+    position: relative;
+    z-index: 1;
 }
 
 .fi-main {
-    background: var(--m-bg) !important;
     position: relative;
     z-index: 1;
 }
@@ -42,145 +43,17 @@
     z-index: 1;
 }
 
-/* ================= SIDEBAR ================= */
-.fi-sidebar {
-    background: rgba(10, 10, 26, 0.95) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
-    z-index: 100;
-}
-
-.fi-sidebar-nav {
+/* Make sure page sections have transparent background so canvas shows through */
+.fi-page,
+.fi-resource {
     background: transparent !important;
 }
 
-.fi-sidebar-group {
-    background: transparent !important;
-}
+/* ================= UTILITY CLASSES ================= */
 
-.fi-sidebar-item {
-    border-radius: var(--m-radius-sm) !important;
-    color: var(--m-text-secondary) !important;
-    transition: var(--m-transition) !important;
-    margin-bottom: 2px;
-    position: relative;
-    overflow: hidden;
-}
-
-.fi-sidebar-item:hover {
-    background: var(--m-bg-card-hover) !important;
-    color: var(--m-text-primary) !important;
-}
-
-.fi-sidebar-item-active,
-.fi-sidebar-item-active:hover {
-    background: linear-gradient(135deg, rgba(108,92,231,0.3), rgba(253,121,168,0.15)) !important;
-    color: var(--m-text-primary) !important;
-    border: 1px solid rgba(108,92,231,0.3) !important;
-}
-
-.fi-sidebar-item-active::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 3px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--m-primary), var(--m-accent));
-    border-radius: 0 3px 3px 0;
-}
-
-.fi-sidebar-group-label {
-    font-size: 10px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 1.5px !important;
-    color: var(--m-text-muted) !important;
-    padding: 8px 12px !important;
-    margin-bottom: 8px !important;
-    font-weight: 600 !important;
-}
-
-/* ================= TOPBAR ================= */
-.fi-topbar {
-    background: rgba(10, 10, 26, 0.8) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-}
-
-.fi-topbar-item {
-    color: var(--m-text-secondary) !important;
-}
-
-/* Search box styling */
-.fi-input-wrp {
-    background: var(--m-glass) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: 12px !important;
-    transition: var(--m-transition) !important;
-}
-
-.fi-input-wrp:focus-within {
-    border-color: var(--m-primary) !important;
-    box-shadow: 0 0 0 3px rgba(108,92,231,0.2) !important;
-}
-
-.fi-input {
-    background: transparent !important;
-    color: var(--m-text-primary) !important;
-    font-size: 13px !important;
-}
-
-.fi-input::placeholder {
-    color: var(--m-text-muted) !important;
-}
-
-/* User avatar / dropdown */
-.fi-avatar {
-    background: linear-gradient(135deg, var(--m-primary), var(--m-accent)) !important;
-    border-radius: 12px !important;
-    font-weight: 700 !important;
-    font-size: 14px !important;
-    transition: var(--m-transition);
-}
-
-.fi-avatar:hover {
-    transform: scale(1.1);
-}
-
-/* ================= WIDGETS ================= */
-.fi-wi-widget > div {
-    background: var(--m-bg-card) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: var(--m-radius) !important;
-    transition: var(--m-transition) !important;
-    box-shadow: none !important;
-}
-
-.fi-wi-widget > div:hover {
-    background: var(--m-bg-card-hover) !important;
-    transform: translateY(-4px) !important;
-    box-shadow: var(--m-shadow) !important;
-}
-
-/* Widget headers */
-.fi-section-header {
-    background: transparent !important;
-}
-
-.fi-section-header-heading {
-    color: var(--m-text-primary) !important;
-    font-weight: 700 !important;
-}
-
-/* ================= STAT CARDS (in hero widget) ================= */
+/* Glassmorphism card (used in widgets) */
 .glass-card {
     background: var(--m-bg-card) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
     border: 1px solid var(--m-border) !important;
     border-radius: var(--m-radius) !important;
     transition: var(--m-transition) !important;
@@ -239,262 +112,29 @@
     border-radius: 0 0 var(--m-radius) var(--m-radius);
 }
 
-/* ================= TABLES ================= */
-.fi-ta-table {
-    background: transparent !important;
+/* Priority left border for task cards */
+.priority-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    border-radius: 3px 0 0 3px;
 }
 
-.fi-ta-table thead tr {
-    background: rgba(255,255,255,0.03) !important;
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, #a29bfe, #fd79a8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.fi-ta-table tbody tr {
-    background: rgba(255, 255, 255, 0.02) !important;
-    transition: var(--m-transition) !important;
-    border-bottom: 1px solid var(--m-border) !important;
-}
-
-.fi-ta-table tbody tr:hover {
-    background: rgba(255, 255, 255, 0.06) !important;
-}
-
-.fi-ta-table th {
-    color: var(--m-text-secondary) !important;
-    font-weight: 600 !important;
-    font-size: 12px !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-}
-
-.fi-ta-table td {
-    color: var(--m-text-primary) !important;
-    font-size: 13px !important;
-}
-
-/* ================= FORMS ================= */
-.fi-fo-section > div {
-    background: var(--m-bg-card) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: var(--m-radius) !important;
-}
-
-.fi-fo-field-wrp-label {
-    color: var(--m-text-secondary) !important;
-    font-size: 12px !important;
-    font-weight: 600 !important;
-    text-transform: uppercase !important;
-    letter-spacing: 0.5px !important;
-}
-
-.fi-fo-text-input > div,
-.fi-fo-select > div,
-.fi-fo-textarea > div {
-    background: var(--m-glass) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: var(--m-radius-sm) !important;
-    transition: var(--m-transition) !important;
-}
-
-.fi-fo-text-input > div:focus-within,
-.fi-fo-select > div:focus-within,
-.fi-fo-textarea > div:focus-within {
-    border-color: var(--m-primary) !important;
-    box-shadow: 0 0 0 3px rgba(108,92,231,0.2) !important;
-}
-
-/* Textarea */
-.fi-fo-textarea textarea {
-    background: transparent !important;
-    color: var(--m-text-primary) !important;
-    font-size: 13px !important;
-    resize: vertical;
-    min-height: 80px;
-}
-
-/* Select options */
-.fi-fo-select select option {
-    background: var(--m-bg) !important;
-    color: var(--m-text-primary) !important;
-}
-
-/* ================= BUTTONS ================= */
-.fi-btn-color-primary {
-    background: linear-gradient(135deg, var(--m-primary), var(--m-primary-dark)) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: var(--m-radius-sm) !important;
-    font-size: 13px !important;
-    font-weight: 600 !important;
-    transition: var(--m-transition) !important;
-    box-shadow: none !important;
-}
-
-.fi-btn-color-primary:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 15px rgba(108,92,231,0.4) !important;
-}
-
-.fi-btn-color-secondary {
-    background: var(--m-glass) !important;
-    border: 1px solid var(--m-border) !important;
-    color: var(--m-text-secondary) !important;
-    border-radius: var(--m-radius-sm) !important;
-    transition: var(--m-transition) !important;
-}
-
-.fi-btn-color-secondary:hover {
-    background: var(--m-bg-card-hover) !important;
-    color: var(--m-text-primary) !important;
-}
-
-/* Icon buttons */
-.fi-icon-btn {
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    background: var(--m-glass);
-    border: 1px solid var(--m-border);
-    color: var(--m-text-secondary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: var(--m-transition);
-    font-size: 16px;
-}
-
-.fi-icon-btn:hover {
-    background: var(--m-bg-card-hover);
-    color: var(--m-text-primary);
-    transform: translateY(-2px);
-}
-
-/* ================= MODALS ================= */
-.fi-modal-content {
-    background: rgba(20, 20, 40, 0.95) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: var(--m-radius) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    animation: modalSlide 0.3s ease !important;
-}
-
-.fi-modal-header {
-    border-bottom: 1px solid var(--m-border) !important;
-}
-
-.fi-modal-footer {
-    border-top: 1px solid var(--m-border) !important;
-}
-
-/* ================= NOTIFICATIONS / TOASTS ================= */
-.fi-notification {
-    background: rgba(20, 20, 40, 0.95) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: var(--m-radius-sm) !important;
-    backdrop-filter: blur(20px) !important;
-    -webkit-backdrop-filter: blur(20px) !important;
-    min-width: 300px !important;
-    animation: toastIn 0.4s ease !important;
-}
-
-.fi-notification-success .fi-notification-icon {
-    color: var(--m-success) !important;
-}
-
-.fi-notification-warning .fi-notification-icon {
-    color: var(--m-warning) !important;
-}
-
-.fi-notification-danger .fi-notification-icon {
-    color: var(--m-danger) !important;
-}
-
-.fi-notification-info .fi-notification-icon {
-    color: var(--m-primary-light) !important;
-}
-
-/* ================= FILTERS / DROPDOWNS ================= */
-.fi-dropdown-panel {
-    background: rgba(20, 20, 40, 0.98) !important;
-    border: 1px solid var(--m-border) !important;
-    border-radius: var(--m-radius-sm) !important;
-    backdrop-filter: blur(20px) !important;
-    box-shadow: var(--m-shadow) !important;
-}
-
-.fi-dropdown-list-item {
-    color: var(--m-text-secondary) !important;
-    transition: var(--m-transition) !important;
-}
-
-.fi-dropdown-list-item:hover {
-    background: var(--m-bg-card-hover) !important;
-    color: var(--m-text-primary) !important;
-}
-
-/* ================= PAGINATION ================= */
-.fi-pagination-item {
-    background: var(--m-glass) !important;
-    border: 1px solid var(--m-border) !important;
-    color: var(--m-text-secondary) !important;
-    transition: var(--m-transition) !important;
-}
-
-.fi-pagination-item:hover {
-    background: var(--m-bg-card-hover) !important;
-    color: var(--m-text-primary) !important;
-}
-
-.fi-pagination-item-active {
-    background: linear-gradient(135deg, var(--m-primary), var(--m-primary-dark)) !important;
-    color: white !important;
-    border-color: transparent !important;
-}
-
-/* ================= TABS ================= */
-.fi-tabs-item {
-    color: var(--m-text-secondary) !important;
-    border-bottom: 2px solid transparent !important;
-    transition: var(--m-transition) !important;
-}
-
-.fi-tabs-item-active {
-    color: var(--m-primary-light) !important;
-    border-bottom-color: var(--m-primary) !important;
-}
-
-/* ================= BADGES ================= */
-.fi-badge {
-    border-radius: 20px !important;
-    font-size: 11px !important;
-    font-weight: 600 !important;
-    padding: 2px 10px !important;
-}
-
-/* ================= CUSTOM SCROLLBAR ================= */
-::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
-}
-
-::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.15);
-    border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.3);
-}
-
-/* Firefox */
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.15) transparent;
+.gradient-text-cyan {
+    background: linear-gradient(135deg, #a29bfe, #00cec9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 /* ================= ANIMATIONS ================= */
@@ -527,7 +167,6 @@
     to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* Utility classes */
 .animate-fade-up {
     animation: fadeUp 0.5s ease forwards;
 }
@@ -540,57 +179,33 @@
     animation: pulseGlow 2s infinite;
 }
 
-/* Gradient text */
-.gradient-text {
-    background: linear-gradient(135deg, #a29bfe, #fd79a8);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+/* ================= CUSTOM SCROLLBAR ================= */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
 }
 
-.gradient-text-cyan {
-    background: linear-gradient(135deg, #a29bfe, #00cec9);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+::-webkit-scrollbar-track {
+    background: transparent;
 }
 
-/* ================= KANBAN / SPECIAL COMPONENTS ================= */
-/* Kanban columns */
-.fi-wi-kanban .kanban-col {
-    background: var(--m-bg-card);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid var(--m-border);
-    border-radius: var(--m-radius);
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
 }
 
-/* Priority left border for task cards */
-.priority-bar {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 3px;
-    border-radius: 3px 0 0 3px;
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
 }
 
-/* ================= THREE.JS BACKGROUND FIXES ================= */
-/* Ensure Filament content sits above the Three.js canvas */
-.fi-app {
-    position: relative;
-    z-index: 1;
-}
-
-/* Make sure page sections have transparent background so canvas shows through */
-.fi-page,
-.fi-resource {
-    background: transparent !important;
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.15) transparent;
 }
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 768px) {
-    .fi-sidebar {
-        background: rgba(10, 10, 26, 0.98) !important;
+    .glass-card {
+        border-radius: 12px !important;
     }
 }

@@ -98,6 +98,14 @@ final class AdminPanelProvider extends PanelProvider
                 'panels::sidebar.footer',
                 fn (): string => Blade::render('@include("filament.admin.hooks.sidebar-streak")'),
             )
+            ->renderHook(
+                'panels::body.start',
+                fn (): string => Blade::render('@include("filament.admin.hooks.threejs-background")'),
+            )
+            ->renderHook(
+                'panels::scripts.before',
+                fn (): string => Blade::render('@include("filament.admin.hooks.confetti-overlay")'),
+            )
             ->plugins([
                 QuickCreatePlugin::make()
                     ->excludes([

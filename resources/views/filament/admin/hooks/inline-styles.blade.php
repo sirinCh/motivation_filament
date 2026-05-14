@@ -461,6 +461,89 @@
         color: #a29bfe !important;
     }
 
+    /* ===== FORM CONTAINERS — suppression du fond blanc ===== */
+    html body.fi-body .fi-form,
+    html body.fi-body .fi-fo,
+    html body.fi-body section.fi-section,
+    html body.fi-body .fi-section,
+    html body.fi-body .fi-section > section,
+    html body.fi-body .fi-section-content,
+    html body.fi-body .fi-section-content-ctn,
+    html body.fi-body .fi-resource-create-page section,
+    html body.fi-body .fi-resource-edit-page section,
+    html body.fi-body .fi-resource-view-page section,
+    html body.fi-body [class*="fi-fo-ctn"],
+    html body.fi-body .fi-fo-component-ctn,
+    html body.fi-body .fi-fo-fieldset,
+    html body.fi-body .fi-fo-fieldset > div,
+    html body.fi-body .fi-fo-card,
+    html body.fi-body .fi-fo-card > div,
+    html body.fi-body .fi-fo-tabs,
+    html body.fi-body .fi-fo-tabs > div,
+    html body.fi-body .fi-fo-wizard,
+    html body.fi-body .fi-fo-wizard > div,
+    html body.fi-body .fi-page-content,
+    html body.fi-body .fi-page-content > div {
+        background-color: transparent !important;
+        background-image: none !important;
+    }
+
+    /* Section principale avec fond glassmorphism */
+    html body.fi-body section.fi-section,
+    html body.fi-body .fi-section {
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(108, 92, 231, 0.03)) !important;
+        border: 1px solid rgba(255, 255, 255, 0.08) !important;
+        border-radius: 16px !important;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+
+    /* Contenu intérieur de la section */
+    html body.fi-body .fi-section-content,
+    html body.fi-body .fi-section-content-ctn {
+        background: transparent !important;
+    }
+
+    /* Inputs Filament v3 — tous les wrappers possibles */
+    html body.fi-body .fi-input-wrp,
+    html body.fi-body .fi-select-input,
+    html body.fi-body [class*="fi-input"],
+    html body.fi-body input.fi-input,
+    html body.fi-body select.fi-select,
+    html body.fi-body textarea.fi-textarea {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        background-image: none !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+        border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    /* Select natif Filament */
+    html body.fi-body .fi-select-input,
+    html body.fi-body select {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    /* Tous les inputs directs */
+    html body.fi-body input:not([type="checkbox"]):not([type="radio"]):not([type="range"]),
+    html body.fi-body textarea,
+    html body.fi-body select {
+        background-color: rgba(255, 255, 255, 0.06) !important;
+        background-image: none !important;
+        color: rgba(255, 255, 255, 0.9) !important;
+    }
+
+    /* Focus state global pour inputs */
+    html body.fi-body input:not([type="checkbox"]):not([type="radio"]):focus,
+    html body.fi-body textarea:focus,
+    html body.fi-body select:focus {
+        background-color: rgba(108, 92, 231, 0.1) !important;
+        border-color: rgba(108, 92, 231, 0.5) !important;
+        outline: none !important;
+        box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2) !important;
+    }
+
     /* ===== SECTION HEADERS ===== */
     .fi-body.fi-body .fi-section-header {
         background: linear-gradient(135deg, rgba(108, 92, 231, 0.08), rgba(253, 121, 168, 0.05)) !important;
@@ -584,48 +667,172 @@
         background: transparent !important;
     }
 
-    /* Stats overview widget — cartes individuelles */
+    /* ===== STATS OVERVIEW — GLASSMORPHISM PREMIUM ===== */
+    @keyframes statGlow {
+        0%, 100% { box-shadow: 0 0 20px rgba(108, 92, 231, 0.15), 0 8px 32px rgba(0,0,0,0.3); }
+        50% { box-shadow: 0 0 35px rgba(108, 92, 231, 0.25), 0 12px 40px rgba(0,0,0,0.4); }
+    }
+
+    @keyframes shimmer {
+        0% { background-position: -200% center; }
+        100% { background-position: 200% center; }
+    }
+
     .fi-body.fi-body .fi-wi-stats-overview {
         background: transparent !important;
     }
 
+    /* Wrapper grille des stats */
+    .fi-body.fi-body .fi-wi-stats-overview > div {
+        gap: 16px !important;
+    }
+
+    /* Carte individuelle — base glassmorphism */
     .fi-body.fi-body .fi-wi-stats-overview-stat {
-        background: linear-gradient(135deg, rgba(255, 255, 255, 0.07), rgba(108, 92, 231, 0.04)) !important;
+        position: relative !important;
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.07) 0%,
+            rgba(108, 92, 231, 0.05) 50%,
+            rgba(255, 255, 255, 0.03) 100%) !important;
         background-color: transparent !important;
-        border: 1px solid rgba(255, 255, 255, 0.1) !important;
-        border-radius: 14px !important;
-        transition: all 0.3s ease !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        border-radius: 20px !important;
+        padding: 20px 24px !important;
+        backdrop-filter: blur(20px) !important;
+        -webkit-backdrop-filter: blur(20px) !important;
+        overflow: hidden !important;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+        box-shadow:
+            0 8px 32px rgba(0, 0, 0, 0.3),
+            inset 0 1px 0 rgba(255, 255, 255, 0.1),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
     }
 
+    /* Bordure supérieure colorée en dégradé */
+    .fi-body.fi-body .fi-wi-stats-overview-stat::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        height: 2px !important;
+        background: linear-gradient(90deg, #6c5ce7, #a29bfe, #fd79a8) !important;
+        border-radius: 20px 20px 0 0 !important;
+        opacity: 0.8 !important;
+    }
+
+    /* Effet de lueur d'arrière-plan */
+    .fi-body.fi-body .fi-wi-stats-overview-stat::after {
+        content: '' !important;
+        position: absolute !important;
+        top: -40% !important;
+        right: -20% !important;
+        width: 180px !important;
+        height: 180px !important;
+        border-radius: 50% !important;
+        background: radial-gradient(circle, rgba(108, 92, 231, 0.12) 0%, transparent 70%) !important;
+        pointer-events: none !important;
+        transition: all 0.4s ease !important;
+    }
+
+    /* Hover : élévation + glow intensifié */
     .fi-body.fi-body .fi-wi-stats-overview-stat:hover {
-        transform: translateY(-3px) !important;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35) !important;
-        border-color: rgba(108, 92, 231, 0.3) !important;
+        transform: translateY(-6px) scale(1.02) !important;
+        border-color: rgba(162, 155, 254, 0.35) !important;
+        box-shadow:
+            0 20px 50px rgba(0, 0, 0, 0.4),
+            0 0 30px rgba(108, 92, 231, 0.2),
+            inset 0 1px 0 rgba(255, 255, 255, 0.15),
+            inset 0 -1px 0 rgba(0, 0, 0, 0.1) !important;
+        background: linear-gradient(135deg,
+            rgba(255, 255, 255, 0.1) 0%,
+            rgba(108, 92, 231, 0.08) 50%,
+            rgba(255, 255, 255, 0.05) 100%) !important;
     }
 
+    .fi-body.fi-body .fi-wi-stats-overview-stat:hover::after {
+        opacity: 1.5 !important;
+        transform: scale(1.3) !important;
+    }
+
+    /* Label (titre de la carte) */
     .fi-body.fi-body .fi-wi-stats-overview-stat-label {
-        color: rgba(255, 255, 255, 0.5) !important;
-        font-size: 12px !important;
+        color: rgba(255, 255, 255, 0.55) !important;
+        font-size: 11px !important;
+        font-weight: 700 !important;
         text-transform: uppercase !important;
-        letter-spacing: 1px !important;
+        letter-spacing: 1.5px !important;
     }
 
+    /* Valeur principale — grand, lumineux, gradient */
     .fi-body.fi-body .fi-wi-stats-overview-stat-value {
-        background: linear-gradient(135deg, #a29bfe, #fd79a8) !important;
+        background: linear-gradient(135deg, #ffffff 0%, #a29bfe 60%, #fd79a8 100%) !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
-        font-weight: 800 !important;
+        font-weight: 900 !important;
+        font-size: 2.2rem !important;
+        line-height: 1.1 !important;
+        letter-spacing: -0.5px !important;
+        margin: 6px 0 !important;
     }
 
+    /* Description / sous-titre */
     .fi-body.fi-body .fi-wi-stats-overview-stat-description {
-        color: rgba(255, 255, 255, 0.5) !important;
+        color: rgba(255, 255, 255, 0.45) !important;
         font-size: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
     }
 
-    /* Barre de couleur latérale des stats overview */
+    /* Icône de description (flèche tendance) */
+    .fi-body.fi-body .fi-wi-stats-overview-stat-description-icon {
+        width: 14px !important;
+        height: 14px !important;
+    }
+
+    /* Icône principale de la carte */
+    .fi-body.fi-body .fi-wi-stats-overview-stat-icon {
+        width: 40px !important;
+        height: 40px !important;
+        border-radius: 12px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        background: rgba(108, 92, 231, 0.2) !important;
+        box-shadow: 0 4px 16px rgba(108, 92, 231, 0.3) !important;
+        backdrop-filter: blur(10px) !important;
+    }
+
+    /* Couleurs spécifiques selon la couleur Filament de la stat */
+    /* success (vert) → Tâches terminées */
+    .fi-body.fi-body .fi-wi-stats-overview-stat[class*="success"] .fi-wi-stats-overview-stat-value,
+    .fi-body.fi-body .fi-color-custom.fi-wi-stats-overview-stat .fi-wi-stats-overview-stat-value {
+        background: linear-gradient(135deg, #ffffff, #00b894) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+    }
+
+    /* Barre de couleur latérale */
     .fi-body.fi-body .fi-wi-stats-overview-stat-chart {
-        opacity: 0.7 !important;
+        opacity: 0.6 !important;
+        filter: saturate(1.5) brightness(1.2) !important;
+        border-radius: 4px !important;
+    }
+
+    /* Description "trending up" = vert, "trending down" = rouge */
+    .fi-body.fi-body .fi-wi-stats-overview-stat-description .fi-color-success,
+    .fi-body.fi-body .fi-wi-stats-overview-stat-description [class*="text-success"] {
+        color: #00b894 !important;
+        -webkit-text-fill-color: #00b894 !important;
+    }
+
+    .fi-body.fi-body .fi-wi-stats-overview-stat-description .fi-color-danger,
+    .fi-body.fi-body .fi-wi-stats-overview-stat-description [class*="text-danger"] {
+        color: #e74c3c !important;
+        -webkit-text-fill-color: #e74c3c !important;
     }
 
     /* ===== D — CHECKBOX / RADIO / TOGGLE ===== */

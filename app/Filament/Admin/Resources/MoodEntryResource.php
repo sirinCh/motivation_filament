@@ -39,21 +39,37 @@ final class MoodEntryResource extends Resource
                     ->required()
                     ->native(false),
 
-                Forms\Components\Slider::make('mood_score')
+                Forms\Components\Select::make('mood_score')
                     ->label('Humeur')
-                    ->minValue(1)
-                    ->maxValue(10)
-                    ->default(7)
-                    ->step(1)
+                    ->options([
+                        1 => '1',
+                        2 => '2',
+                        3 => '3',
+                        4 => '4',
+                        5 => '5',
+                        6 => '6',
+                        7 => '7',
+                        8 => '8',
+                        9 => '9',
+                        10 => '10',
+                    ])
                     ->required()
                     ->helperText('1 = Très mal | 10 = Excellent'),
 
-                Forms\Components\Slider::make('energy_score')
+                Forms\Components\Select::make('energy_score')
                     ->label('Énergie')
-                    ->minValue(1)
-                    ->maxValue(10)
-                    ->default(7)
-                    ->step(1)
+                    ->options([
+                        1 => '1',
+                        2 => '2',
+                        3 => '3',
+                        4 => '4',
+                        5 => '5',
+                        6 => '6',
+                        7 => '7',
+                        8 => '8',
+                        9 => '9',
+                        10 => '10',
+                    ])
                     ->required()
                     ->helperText('1 = Épuisé | 10 = Très énergique'),
             ]);

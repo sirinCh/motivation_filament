@@ -20,6 +20,11 @@ final class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@admin.com',
+            'is_admin' => true,
+        ]);
+
+        $this->call([
+            QuoteSeeder::class,
         ]);
     }
 }

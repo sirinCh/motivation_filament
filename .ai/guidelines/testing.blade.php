@@ -135,9 +135,9 @@ fclose($tempFile);
 ## Laravel Blade & Views
 
 ### Common Syntax Issues
-- **Double curly braces are invalid** - Blade uses `{{ }}` for escaping, not `{{ {{ }} }}`
-- Invalid: `<div>{{ {{ $variable }} }}</div>`
-- Valid: `<div>{{ $variable }}</div>`
+- **Double curly braces are invalid** - Blade uses `@{{ }}` for escaping, not `@{{ @{{ }} }}`
+- Invalid: `<div>@{{ @{{ $variable }} }}</div>`
+- Valid: `<div>@{{ $variable }}</div>`
 
 ### View Cache
 - If tests fail with old view content after fixes, clear the view cache:

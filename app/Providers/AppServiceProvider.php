@@ -28,6 +28,10 @@ final class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        \Gate::policy(\App\Models\Task::class, \App\Policies\TaskPolicy::class);
+        \Gate::policy(\App\Models\PomodoroSession::class, \App\Policies\PomodoroSessionPolicy::class);
+        \Gate::policy(\App\Models\MediaItem::class, \App\Policies\MediaItemPolicy::class);
+        \Gate::policy(\App\Models\MoodEntry::class, \App\Policies\MoodEntryPolicy::class);
+        \Gate::policy(\App\Models\Goal::class, \App\Policies\GoalPolicy::class);
     }
 }

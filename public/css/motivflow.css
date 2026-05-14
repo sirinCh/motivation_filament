@@ -1,0 +1,132 @@
+/* ================= MOTIVFLOW CUSTOM THEME ================= */
+
+/* Darker body background for glassmorphism pop */
+.fi-body {
+    background: #0a0a1a !important;
+}
+
+/* Glassmorphism card utility (used by widgets) */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 16px !important;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Gradient text utility */
+.gradient-text {
+    background: linear-gradient(135deg, #a29bfe, #fd79a8);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.gradient-text-cyan {
+    background: linear-gradient(135deg, #a29bfe, #00cec9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* FadeUp animation for widgets */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-up {
+    animation: fadeUp 0.5s ease forwards;
+}
+
+/* SlideIn animation */
+@keyframes slideIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slide-in {
+    animation: slideIn 0.6s ease forwards;
+}
+
+/* Pulse glow for streak */
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(253, 203, 110, 0.2); }
+    50% { box-shadow: 0 0 20px 5px rgba(253, 203, 110, 0.15); }
+}
+
+.pulse-glow {
+    animation: pulseGlow 2s infinite;
+}
+
+/* Stat card bottom gradient accent (applied via inline styles in PHP) */
+.stat-accent-purple { border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #6c5ce7, #a29bfe) 1; }
+.stat-accent-success { border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #00b894, #00cec9) 1; }
+.stat-accent-warning { border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #fd79a8, #fdcb6e) 1; }
+.stat-accent-danger { border-bottom: 3px solid transparent; border-image: linear-gradient(90deg, #f39c12, #e74c3c) 1; }
+
+/* Priority left border for task cards */
+.priority-bar { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; border-radius: 3px 0 0 3px; }
+
+/* Kanban column glassmorphism override */
+.fi-wi-kanban .kanban-col {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
+
+/* Fix Filament dark mode sidebar to match */
+.fi-sidebar {
+    background: rgba(10, 10, 26, 0.95) !important;
+    backdrop-filter: blur(20px) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Topbar glassmorphism */
+.fi-topbar {
+    background: rgba(10, 10, 26, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+/* Page content area */
+.fi-main {
+    background: #0a0a1a !important;
+}
+
+/* Make sure widget cards are transparent-ish for glass effect */
+.fi-wi-widget > div {
+    background: transparent !important;
+}
+
+/* Table rows dark */
+.fi-ta-table tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+}
+.fi-ta-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+/* Form sections glass */
+.fi-fo-section > div {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+}
